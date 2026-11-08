@@ -6,6 +6,8 @@ namespace MMABooksEFClasses.MarisModels
 {
     public partial class MMABooksContext : DbContext
     {
+        public object customers;
+
         public MMABooksContext()
         {
         }
