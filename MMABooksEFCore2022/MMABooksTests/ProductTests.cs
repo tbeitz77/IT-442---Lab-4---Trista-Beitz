@@ -52,14 +52,10 @@ namespace MMABooksTests
         public void GetUsingWhere()
         {
             // get a list of all of the products that have a unit price of 56.50 (or calculated values as written)
-            var products = dbContext.Products.Select(
-             p => new { p.ProductCode, p.UnitPrice, p.OnHandQuantity, Value = p.UnitPrice * p.OnHandQuantity }).
-             OrderBy(p => p.ProductCode).ToList();
-            Assert.AreEqual(16, products.Count);
-            foreach (var p in products)
-            {
-                Console.WriteLine(p);
-            }
+            products = dbContext.Products.Where(p => p.UnitPrice == 56.50m).OrderBy(p => p.ProductCode).ToList();
+            Assert.AreEqual(7, products.Count);
+            Assert.AreEqual("A4CS", products[0].ProductCode.Trim());
+            PrintAll(products);
         }
 
         [Test]
